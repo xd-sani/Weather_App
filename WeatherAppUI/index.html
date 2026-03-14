@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skywatch — Weather</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <div class="loading-text">FETCHING FORECAST...</div>
+  </div>
+
+  <div class="page-wrapper">
+
+    <header>
+      <div class="brand">Sky<span>watch</span></div>
+      <div class="last-updated" id="lastUpdated">—</div>
+    </header>
+
+    <div class="search-row">
+      <div class="search-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="cityInput" placeholder="Enter city name..." value="agra"/>
+      </div>
+      <select class="days-select" id="daysSelect">
+        <option value="1">1 Day</option>
+        <option value="2" selected>2 Days</option>
+        <option value="3">3 Days</option>
+        <option value="5">5 Days</option>
+        <option value="7">7 Days</option>
+      </select>
+      <button class="fetch-btn" id="fetchBtn" onclick="fetchWeather()">SEARCH</button>
+    </div>
+
+    <!-- Error -->
+    <div class="error-msg" id="errorMsg"></div>
+
+    <!-- Empty state -->
+    <div class="empty-state show" id="emptyState">
+      <svg width="64" height="64" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M20 32 Q32 16 44 32" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="32" cy="32" r="4" fill="currentColor"/>
+      </svg>
+      <h3>No Forecast Loaded</h3>
+      <p>Enter a city and press Search to load the weather forecast</p>
+    </div>
+
+    <!-- Content -->
+    <div class="content-area" id="contentArea">
+
+      <!-- Hero card -->
+      <div class="hero-card" id="heroCard">
+        <div id="heroIcon"></div>
+        <div class="hero-info">
+          <div class="city-line">
+            <div class="city-name" id="cityName">—</div>
+            <div class="region-label" id="regionLabel">—</div>
+          </div>
+          <div class="condition-text" id="conditionText">—</div>
+          <div>
+            <span class="current-temp" id="currentTemp">—</span>
+            <span class="temp-unit">°C</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid" id="statsGrid"></div>
+
+      <!-- Forecast -->
+      <div class="section-label">— Day by Day Forecast —</div>
+      <div class="forecast-grid" id="forecastGrid"></div>
+
+    </div><!-- /content-area -->
+
+  </div><!-- /page-wrapper -->
+
+  <script src="app.js"></script>
+</body>
+</html>
